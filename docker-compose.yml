@@ -1,0 +1,44 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    env_file: .env
+    depends_on:
+      - mongodb
+      - redis
+    container_name: API
+    volumes:
+      - ./:/src
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - "mongodata:/data/db"
+    networks:
+      - backend
+    container_name: MONGO
+
+  redis:
+    image: redis
+    container_name: REDIS
+
+  web:
+    container_name: WEB
+    image: nginx:latest
+    ports:
+      - "8081:80"
+    volumes:
+      - "./web:/usr/share/nginx/html"
+    depends_on:
+      - "api"
+
+volumes:
+  mongodata:
+networks:
+  backend:
