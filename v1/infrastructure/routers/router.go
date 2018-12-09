@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"github.com/alamin-mahamud/go-bootstrap/infrastructure/middleware"
+	"github.com/alamin-mahamud/go-bootstrap/v1/infrastructure/middleware"
 	"github.com/gorilla/mux"
 )
 

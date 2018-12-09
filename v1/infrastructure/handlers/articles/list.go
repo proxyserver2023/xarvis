@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/alamin-mahamud/go-bootstrap/repository"
-	articleUseCase "github.com/alamin-mahamud/go-bootstrap/usecase/articles"
+	"github.com/alamin-mahamud/go-bootstrap/v1/repository"
+	articleUseCase "github.com/alamin-mahamud/go-bootstrap/v1/usecase/articles"
 )
 
 // List - passes to the actual usecase for getting all the list with the repository.

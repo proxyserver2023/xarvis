@@ -3,7 +3,7 @@ package repository
 import (
 	mgo "gopkg.in/mgo.v2"
 
-	articleEntity "github.com/alamin-mahamud/go-bootstrap/entity/article"
+	articleEntity "github.com/alamin-mahamud/go-bootstrap/v1/entity/article"
 )
 
 // MongoDB holds the MongoDB Session

@@ -1,8 +1,8 @@
 package routers
 
 import (
-	articleHandler "github.com/alamin-mahamud/go-bootstrap/infrastructure/handlers/articles"
-	userHandler "github.com/alamin-mahamud/go-bootstrap/infrastructure/handlers/users"
+	articleHandler "github.com/alamin-mahamud/go-bootstrap/v1/infrastructure/handlers/articles"
+	userHandler "github.com/alamin-mahamud/go-bootstrap/v1/infrastructure/handlers/users"
 )
 
 // Routes are grouped by according to their usage.
