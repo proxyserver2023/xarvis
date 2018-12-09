@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/alamin-mahamud/go-bootstrap/infrastructure"
+	"github.com/alamin-mahamud/go-bootstrap/v1/infrastructure"
 )
 
 func main() {
