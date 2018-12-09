@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/alamin-mahamud/go-bootstrap/infrastructure/routers"
+	"github.com/alamin-mahamud/go-bootstrap/v1/infrastructure/routers"
 )
 
 func Run() {
