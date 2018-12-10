@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/alamin-mahamud/go-bootstrap/v2/infrastructure"
+	"github.com/alamin-mahamud/go-bootstrap/v3/app"
 )
 
 func main() {
-	infrastructure.Run()
+	app.Run()
 }
