@@ -1,4 +1,9 @@
-# go-bootstrap
+# go-bootstrap [WIP]
+[![Coverage Status](https://coveralls.io/repos/github/alamin-mahamud/go-bootstrap/badge.svg?branch=master)](https://coveralls.io/github/alamin-mahamud/go-bootstrap?branch=master) [![Go Report Card](https://goreportcard.com/badge/github.com/alamin-mahamud/go-bootstrap)](https://goreportcard.com/report/github.com/alamin-mahamud/go-bootstrap) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[Travis CI Build Status](https://travis-ci.org/alamin-mahamud/go-bootstrap.svg?branch=master)
+
+[Microbadger](Microbadger)
 
 Microservices based REST API Implementation. where services talks with each other with protocol buffers.
 
