@@ -18,6 +18,8 @@ git:
 
 
 before_install:
+  - go mod download
+  - go mod vendor
   - go get github.com/mattn/goveralls
 
 script:

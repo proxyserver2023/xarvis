@@ -20,7 +20,7 @@ run:
 	go run ${LDFLAGS} main.go
 
 build: clean
-	GOOS=linux GOARCH=amd64 go build ${LDFLAGS} -a -o server server.go
+	GOOS=linux GOARCH=amd64 go build ${LDFLAGS} -a -o go-bootstrap main.go
 
 clean:
-	rm -f server coverage.out coverage-all.out
+	rm -f go-bootstrap coverage.out coverage-all.out
