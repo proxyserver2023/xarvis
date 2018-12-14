@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/alamin-mahamud/go-bootstrap/v3/app"
+	"github.com/alamin-mahamud/go-bootstrap/v4/cmd"
 )
 
 func main() {
-	app.Run()
+	cmd.Run()
 }
