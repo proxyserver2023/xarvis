@@ -1,4 +1,4 @@
-# go-bootstrap [WIP]
+# gapi [WIP]
 
 [![GitHub release](https://img.shields.io/github/release/mch1307/gomotics.svg)](https://github.com/mch1307/gomotics/releases)
 [![Travis branch](https://travis-ci.org/alamin-mahamud/go-bootstrap.svg?branch=master)](https://travis-ci.org/alamin-mahamud/go-bootstrap)
