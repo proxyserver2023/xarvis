@@ -21,7 +21,7 @@ COPY . .
 RUN     CGO_ENABLED=0 \
         GOOS=linux    \
         GOARCH=amd64  \
-        go build -a -installsuffix cgo -o app ./...
+        go build -a -installsuffix cgo -o app cmd/api/main.go
 
 # Here we're using a second FROM statement, which is strange,
 # but this tells Docker to start a new build process with this
