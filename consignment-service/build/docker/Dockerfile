@@ -1,24 +1,26 @@
-# consignment-service/Dockerfile
-
 # We use the official golang image, which contains all the 
 # correct build tools and libraries. Notice `as builder`,
 # this gives this container a name that we can reference later on. 
-FROM golang:1.9.0 as builder
+FROM golang:1.11-alpine as builder
 
 # Set our workdir to our current service in the gopath
 WORKDIR /go/src/github.com/alamin-mahamud/gapi/consignment-service
 
 # Copy the current code into our workdir
-COPY . .
+COPY go.mod .
+COPY go.sum .
 
-# Here we're pulling in godep, which is a dependency manager tool,
-# we're going to use dep instead of go get, to get around a few
-# quirks in how go get works with sub-packages.
-RUN go get -d -v
+# get deps
+RUN go mod download
+
+COPY . .
 
 # Build the binary, with a few flags which will allow
 # us to run this binary in Alpine. 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo . -o dist/consignment-service
+RUN     CGO_ENABLED=0 \
+        GOOS=linux    \
+        GOARCH=amd64  \
+        go build -a -installsuffix cgo . -o /go/bin/app
 
 # Here we're using a second FROM statement, which is strange,
 # but this tells Docker to start a new build process with this
@@ -26,19 +28,15 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo . -o dist/consignmen
 FROM alpine:latest
 
 # Security related package, good to have.
-RUN apk --no-cache add ca-certificates
-
-# Same as before, create a directory for our app.
-RUN mkdir /app
-WORKDIR /app
+RUN apk add --update --no-cache ca-certificates git
 
 # Here, instead of copying the binary from our host machine,
 # we pull the binary from the container named `builder`, within
 # this build context. This reaches into our previous image, finds
 # the binary we built, and pulls it into this container. Amazing!
-COPY --from=builder /go/src/github.com/EwanValentine/shippy/consignment-service/consignment-service .
+COPY --from=builder /go/bin/app /bin/app
 
 # Run the binary as per usual! This time with a binary build in a
 # separate container, with all of the correct dependencies and
 # run time libraries.
-CMD ["./consignment-service"]
+ENTRYPOINT ["/bin/app"]
