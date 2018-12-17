@@ -24,7 +24,6 @@ before_install:
 script:
   - $HOME/gopath/bin/goveralls -v -service=travis-ci
   - ./build/scripts/pre-commit.sh
-  - make test
 
 notifications:
   email: false
