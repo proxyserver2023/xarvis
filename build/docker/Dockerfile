@@ -2,6 +2,7 @@
 # correct build tools and libraries. Notice `as builder`,
 # this gives this container a name that we can reference later on. 
 FROM golang:1.11-alpine as builder
+RUN apk add git
 
 RUN apk add git
 
