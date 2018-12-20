@@ -3,8 +3,10 @@
 # this gives this container a name that we can reference later on. 
 FROM golang:1.11-alpine as builder
 
+RUN apk add git
+
 # Set our workdir to our current service in the gopath
-WORKDIR /go/src/github.com/alamin-mahamud/gapi
+WORKDIR /go/glsrc/github.com/alamin-mahamud/gapi
 
 # Copy the current code into our workdir
 COPY go.mod .

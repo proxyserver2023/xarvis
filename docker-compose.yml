@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  api:
+    restart: always
+    build: 
+      context: .
+      dockerfile: ./build/docker/Dockerfile
+    depends_on:
+      - db
+    networks:
+      - mynet
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=mysql"
+      - "DB_NAME=go-mysql-crud"
+      - "DB_PASS=12345"
+      - "DB_USER=root"
+    ports:
+      - "8081:8081"
+
+  db:
+    image: mysql
+    ports:
+      - 3306:3306
+    networks:
+      - mynet
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=12345"
+    
+volumes:
+  db-data:
+
+networks:
+  mynet:
