@@ -1,12 +1,15 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/alamin-mahamud/gapi/pkg/apis"
+	"github.com/alamin-mahamud/gapi/pkg/app"
 )
 
 func main() {
-	fmt.Println("It Works!")
-	apis.Run()
+	checkErr(app.Run())
+}
+
+func checkErr(err error) {
+	if err != nil {
+		panic(err.Error())
+	}
 }
