@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Copyright © 2018 NAME HERE <EMAIL ADDRESS>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,4 +19,14 @@ import "github.com/alamin-mahamud/gapi/cmd"
 
 func main() {
 	cmd.Execute()
+=======
+package main
+
+import (
+	"github.com/alamin-mahamud/gapi/pkg/app"
+)
+
+func main() {
+	app.Start()
+>>>>>>> mongodb-with-rest
 }
