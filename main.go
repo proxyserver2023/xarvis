@@ -12,7 +12,7 @@ func dummy(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	router := mux.NewRouter()
+	router := mux.NewRouter().StrictSlash(true)
 	adminRoutes := router.PathPrefix("/admin").Subrouter()
 	adminRoutes.HandleFunc("/", dummy)
 	http.ListenAndServe(":8080", router)
