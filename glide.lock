@@ -1,6 +1,12 @@
-hash: a620a56489119cb37b1311f68d3df2eeef651e71b229f46a982f0b5b8fefb729
-updated: 2018-12-25T21:53:32.471315309+06:00
+hash: e7609ba40b08ecb9466d002d832e8be86bc912fa01f13c43c951452d2f734d43
+updated: 2018-12-26T00:34:40.236948402+06:00
 imports:
+- name: github.com/gorilla/context
+  version: 51ce91d2eaddeca0ef29a71d766bb3634dadf729
+- name: github.com/gorilla/mux
+  version: e3702bed27f0d39777b0b37b664b6280e8ef8fbf
+- name: github.com/rs/cors
+  version: 9a47f48565a795472d43519dd49aac781f3034fb
 - name: github.com/urfave/negroni
   version: c6a59be0ce122566695fbd5e48a77f8f10c8a63a
 testImports: []
