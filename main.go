@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
-	"time"
 
-	"github.com/urfave/negroni"
+	"github.com/gorilla/mux"
 )
 
 func dummy(w http.ResponseWriter, r *http.Request) {
@@ -14,18 +12,8 @@ func dummy(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", dummy)
-	n := negroni.Classic()
-	n.UseHandler(mux)
-
-	s := &http.Server{
-		Addr:           ":8080",
-		Handler:        n,
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
-		MaxHeaderBytes: 1 << 20,
-	}
-
-	log.Fatal(s.ListenAndServe())
+	router := mux.NewRouter()
+	adminRoutes := router.PathPrefix("/admin").Subrouter()
+	adminRoutes.HandleFunc("/", dummy)
+	http.ListenAndServe(":8080", router)
 }
