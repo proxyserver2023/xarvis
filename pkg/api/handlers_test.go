@@ -33,4 +33,5 @@ func TestNotFound(t *testing.T) {
 		w.Code,
 		"Status must be 404",
 	)
+
 }
