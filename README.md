@@ -1,5 +1,6 @@
-<<<<<<< HEAD
-# gapi
+# gapi [WIP]
+
+Go rest api bootstrap template with SOLID and Clean Architecture using Microservices Best Practices.
 
 Microservices
 1. golang
@@ -21,10 +22,6 @@ go get -u github.com/golang/protobuf/protoc-gen-go
 ## Features We have covered here...
 
 1. Service Discovery
-=======
-# gapi [WIP]
-
-Go rest api bootstrap template with SOLID and Clean Architecture using Microservices Best Practices.
 
 ## Mongodb with go api
 
@@ -37,4 +34,3 @@ Go rest api bootstrap template with SOLID and Clean Architecture using Microserv
 docker run --name MONGO --restart=always -d -p 27017:27017 mongo mongod --auth
 docker exec -it MONGO bash
 ```
->>>>>>> mongodb-with-rest
