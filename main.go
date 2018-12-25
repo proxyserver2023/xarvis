@@ -16,19 +16,31 @@ func dummy2(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "13412341234134")
 }
 
+func Middleware1(next http.Handler) http.Handler {
+	// do some stuff
+	// call the next middleware
+	// do some stuff
+	return next
+}
+
+func Middleware2(next http.Handler) http.Handler {
+	// do some stuff
+	// call the next middleware
+	// do some stuff
+	return next
+}
+
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
-	adminRoutes := router.PathPrefix("/admin").Subrouter()
-	adminRoutes.HandleFunc("/", dummy)
-	adminRoutes.HandleFunc("/{id}", dummy2)
-
-	router.PathPrefix("/admin").Handler(
-		negroni.New(
-			// Middleware - 1,
-			// Middleware - 2,
-			negroni.Wrap(adminRoutes),
-		),
+	apiRoutes := mux.NewRouter()
+	webRoutes := mux.NewRouter()
+	common := negroni.New(
+		Middleware1,
+		Middleware2,
 	)
-
+	router.PathPrefix("/").Handler(common.With(
+		APIMiddleware1,
+		negroni.Wrap(apiRoutes),
+	))
 	http.ListenAndServe(":8080", router)
 }
