@@ -1,8 +1,0 @@
-version: '3'
-services:
-  database:
-    image: mongo
-    ports:
-      - '27017:27017'
-    volumes:
-      - '/home/alamin/.data/mongo-data:/data/db'
