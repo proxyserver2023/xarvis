@@ -18,6 +18,7 @@ func main() {
 
 func initMiddleware(h http.Handler) http.Handler {
 	n := negroni.New()
+	initRecoveryMiddleware(n)
 	initCORSMiddleware(n)
 	initLoggerMiddleware(n)
 	n.UseHandler(h)
@@ -49,4 +50,9 @@ func initLoggerMiddleware(n *negroni.Negroni) {
 	l := negronilogrus.NewMiddleware()
 	// l := negronilogrus.NewCustomMiddleware(logrus.DebugLevel, &logrus.JSONFormatter{}, "web")
 	n.Use(l)
+}
+
+func initRecoveryMiddleware(n *negroni.Negroni) {
+	r := negroni.NewRecovery()
+	n.Use(r)
 }
