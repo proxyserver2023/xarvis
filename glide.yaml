@@ -8,3 +8,5 @@ import:
 - package: github.com/unrolled/secure
 - package: github.com/jeffbmartinez/delay
   version: ^1.0.0
+- package: github.com/awakesecurity/csp
+- package: github.com/auth0/go-jwt-middleware

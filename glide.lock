@@ -1,6 +1,10 @@
-hash: 8ed6425838959f47834760b5235d6b05f1c01b27fed21f3ffd4f0b28a2245e3d
-updated: 2018-12-26T08:59:57.562601357+06:00
+hash: 8d88007ba19d631cd02140e6ccd8ab58e39afe8bee102e6b68ccc2d17e94eb43
+updated: 2018-12-26T09:42:16.336952221+06:00
 imports:
+- name: github.com/auth0/go-jwt-middleware
+  version: 5493cabe49f7bfa6e2ec444a09d334d90cd4e2bd
+- name: github.com/awakesecurity/csp
+  version: 7896a032f1b6c1acad5e5d91f90a49d03a41aabc
 - name: github.com/gorilla/context
   version: 51ce91d2eaddeca0ef29a71d766bb3634dadf729
 - name: github.com/gorilla/mux

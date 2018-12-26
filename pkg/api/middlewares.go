@@ -3,6 +3,9 @@ package api
 import (
 	"net/http"
 
+	"github.com/auth0/go-jwt-middleware"
+
+	"github.com/awakesecurity/csp"
 	"github.com/jeffbmartinez/delay"
 	negronilogrus "github.com/meatballhat/negroni-logrus"
 	"github.com/rs/cors"
@@ -13,17 +16,21 @@ import (
 //  InitMiddleware - registers all the middlewares in proper order wrapping the routes.HandlerFuncWithNext
 func InitMiddleware(h http.Handler) http.Handler {
 	n := negroni.New()
-	initRecoveryMiddleware(n)
-	initCORSMiddleware(n)
-	initLoggerMiddleware(n)
-	initSecureMiddleware(n)
+
+	initRecovery(n)
+	initCORS(n)
+	initLogger(n)
+	initSecure(n)
 	// Only In Debug Mode
-	initDelayMiddleware(n)
+	initDelay(n)
+	initCSP(n)
+	initJWT(n)
+
 	n.UseHandler(h)
 	return n
 }
 
-func initCORSMiddleware(n *negroni.Negroni) {
+func initCORS(n *negroni.Negroni) {
 	c := cors.New(
 		cors.Options{
 			AllowedOrigins: []string{"http://foo.com"},
@@ -32,7 +39,7 @@ func initCORSMiddleware(n *negroni.Negroni) {
 	n.Use(c)
 }
 
-func initLoggerMiddleware(n *negroni.Negroni) {
+func initLogger(n *negroni.Negroni) {
 	// Default Logger Middleware for Negroni
 	// l := negroni.NewLogger()
 	// l.SetFormat("[{{.Status}} {{.Duration}}] - {{.Request.UserAgent}}")
@@ -45,12 +52,12 @@ func initLoggerMiddleware(n *negroni.Negroni) {
 	n.Use(l)
 }
 
-func initRecoveryMiddleware(n *negroni.Negroni) {
+func initRecovery(n *negroni.Negroni) {
 	r := negroni.NewRecovery()
 	n.Use(r)
 }
 
-func initSecureMiddleware(n *negroni.Negroni) {
+func initSecure(n *negroni.Negroni) {
 	// ...
 	secure := secure.New(secure.Options{
 		// AllowedHosts is a list of fully qualified domain names that are allowed. Default is empty list, which allows any and all host names.
@@ -101,7 +108,28 @@ func initSecureMiddleware(n *negroni.Negroni) {
 	n.Use(s)
 }
 
-func initDelayMiddleware(n *negroni.Negroni) {
+func initDelay(n *negroni.Negroni) {
 	d := delay.Middleware{}
 	n.Use(d)
+}
+
+func initCSP(n *negroni.Negroni) {
+	c := csp.New(
+		csp.Config{
+			Default: csp.None,
+			Script:  csp.Self,
+			Connect: csp.Self,
+			Img:     csp.Self,
+			Style:   csp.Self,
+		},
+	)
+	n.Use(c.NegroniHandlerFunc())
+}
+
+func initJWT(n *negroni.Negroni) {
+
+	options := jwtmiddleware.Options{}
+
+	j := jwtmiddleware.New(options).HandlerWithNext
+	n.Use(negroni.HandlerFunc(j))
 }
