@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/auth0/go-jwt-middleware"
+	jwt "github.com/dgrijalva/jwt-go"
 
 	"github.com/awakesecurity/csp"
 	"github.com/jeffbmartinez/delay"
@@ -128,7 +129,12 @@ func initCSP(n *negroni.Negroni) {
 
 func initJWT(n *negroni.Negroni) {
 
-	options := jwtmiddleware.Options{}
+	options := jwtmiddleware.Options{
+		ValidationKeyGetter: func(token *jwt.Token) (interface{}, error) {
+			return []byte("JWT Secret"), nil
+		},
+		SigningMethod: jwt.SigningMethodHS256,
+	}
 
 	j := jwtmiddleware.New(options).HandlerWithNext
 	n.Use(negroni.HandlerFunc(j))

@@ -7,7 +7,13 @@ import (
 )
 
 func Start() {
+	loadApplicationConfiguration()
+	loadErrorMessages()
+	connectDatabase()
+	apiRouting()
+	startTheServer()
 	router := api.InitRouter()
 	handler := api.InitMiddleware(router)
-	http.ListenAndServe(":8080", handler)
+	http.Handle("/", handler)
+	http.ListenAndServe(":8080", nil)
 }

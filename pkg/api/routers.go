@@ -9,10 +9,7 @@ import (
 
 func InitRouter() http.Handler {
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte("{\"hello\": \"world\"}"))
-	})
+	router.HandleFunc("/ping", PingHandler)
 	return router
 }
 
@@ -31,4 +28,12 @@ func respondJson(text string, w http.ResponseWriter) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(jsonResponse)
+}
+
+func PingHandler(w http.ResponseWriter, r *http.Request) {
+	respondJson("Without Auth", w)
+}
+
+func SecuredPingHandler(w http.ResponseWriter, r *http.Request) {
+	respondJson("Auth", w)
 }
