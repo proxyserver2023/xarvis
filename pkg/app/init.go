@@ -1,11 +1,11 @@
 package app
 
 import (
-	"github.com/sirupsen/logrus"
 	"github.com/go-ozzo/ozzo-routing"
 	"github.com/go-ozzo/ozzo-routing/access"
 	"github.com/go-ozzo/ozzo-routing/fault"
 	"github.com/go-ozzo/ozzo-validation"
+	"github.com/sirupsen/logrus"
 	"net/http"
 
 	"time"
@@ -24,7 +24,6 @@ func Init(logger *logrus.Logger) routing.Handler {
 		// fault.Recovery(ac.)
 	}
 }
-
 
 // Get Response Scope returns the Request Scope of the current Request
 func GetRequestScope(c *routing.Context) RequestScope {
