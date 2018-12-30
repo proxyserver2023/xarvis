@@ -1,4 +1,4 @@
-package gapi
+package main
 
 import (
 	"fmt"
@@ -7,7 +7,10 @@ import (
 	"github.com/alamin-mahamud/gapi/pkg/app"
 	"github.com/alamin-mahamud/gapi/errors"
 	"github.com/go-ozzo/ozzo-dbx"
+	"github.com/go-ozzo/ozzo-routing"
 	"github.com/sirupsen/logrus"
+
+	_ "github.com/lib/pq"
 )
 
 func main() {
@@ -38,4 +41,13 @@ func main() {
 	address := fmt.Sprintf(":%v", app.Config.ServerPort)
 	logger.Infof("Server %v is started at  %v\n", app.Version, address)
 	panic(http.ListenAndServe(address, nil))
+}
+
+func buildRouter(logger *logrus.Logger, db *dbx.DB) http.Handler{
+	router := routing.New()
+	router.To("GET,HEAD", "/ping", func(c *routing.Context) error {
+		c.Abort()  // skip all other middlewares/handlers
+		return c.Write("OK " + app.Version)
+	})
+	return router
 }
