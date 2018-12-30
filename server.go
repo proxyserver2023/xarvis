@@ -2,7 +2,7 @@ package gapi
 
 import (
 	"fmt"
-	"github.com/qiangxue/golang-restful-starter-kit/app"
+	"github.com/alamin-mahamud/gapi/pkg/app"
 )
 
 func main() {
