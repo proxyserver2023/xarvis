@@ -21,23 +21,23 @@ type RequestScope interface {
 
 type requestScope struct {
 	Logger
-	now time.Time
+	now       time.Time
 	requestID string
-	userID string
-	rollback bool
-	tx *dbx.Tx
+	userID    string
+	rollback  bool
+	tx        *dbx.Tx
 }
 
-func (rs *requestScope) UserID() string{
+func (rs *requestScope) UserID() string {
 	return rs.userID
 }
 
-func (rs *requestScope) SetUserID(id string){
+func (rs *requestScope) SetUserID(id string) {
 	rs.Logger.SetField("User ID", id)
 	rs.userID = id
 }
 
-func (rs *requestScope) Tx() *dbx.Tx{
+func (rs *requestScope) Tx() *dbx.Tx {
 	return rs.tx
 }
 
@@ -68,8 +68,8 @@ func newRequestScope(now time.Time, logger *logrus.Logger, request *http.Request
 		l.SetField("RequestID", requestID)
 	}
 	return &requestScope{
-		Logger: l,
-		now: now,
+		Logger:    l,
+		now:       now,
 		requestID: requestID,
 	}
 }
