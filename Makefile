@@ -1,7 +1,7 @@
 MAIN_VERSION:=$(shell git describe --abbrev=0 --tags || echo "1.0")
 VERSION:=${MAIN_VERSION}\#$(shell git log -n 1 --pretty=format:"%h")
 PACKAGES:=$(shell go list ./... | sed -n '1!p' | grep -v /vendor/)
-LDFLAGS:=-ldflags "-X github.com/alamin-mahamud/go-bootstrap/v3/app.Version=${VERSION}"
+#LDFLAGS:=-ldflags "-X github.com/alamin-mahamud/xarvis/pkg/app.Version=${VERSION}"
 
 default: run
 
@@ -17,10 +17,10 @@ cover:
 	go tool cover -html=coverage-all.out
 
 run:
-	go run ${LDFLAGS} main.go
+	go run ${LDFLAGS} cmd/xarvis/main.go
 
 build: clean
-	GOOS=linux GOARCH=amd64 go build ${LDFLAGS} -a -o server server.go
+	GOOS=linux GOARCH=amd64 go build ${LDFLAGS} -a -o xarvis cmd/xarvis/main.go
 
 clean:
 	rm -f server coverage.out coverage-all.out
