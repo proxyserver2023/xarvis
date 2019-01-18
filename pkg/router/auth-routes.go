@@ -1,6 +1,7 @@
 package router
 
 import (
+	"github.com/alamin-mahamud/xarvis/pkg/database"
 	"github.com/alamin-mahamud/xarvis/pkg/handler"
 	"github.com/alamin-mahamud/xarvis/pkg/repository"
 	"github.com/alamin-mahamud/xarvis/pkg/usecase"
@@ -11,6 +12,7 @@ func getAuthRoutes() Routes {
 	userRepo := repository.NewUser(mgoUserCollection)
 	userUsecase := usecase.NewUser(userRepo)
 	userHandler := handler.NewUser(userUsecase)
+
 	return Routes{
 		// Public Routes
 		Route{"List", "GET", "", userHandler.List},
