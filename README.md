@@ -22,6 +22,87 @@ cd $GOPATH/src/github.com/alamin-mahamud/xarvis
 docker-compose up
 ```
 
+## Endpoints
+
+* List all
+```
+GET - http://localhost:8080/v1/authentication
+
+``` 
+
+``` 
+# Status Code 200 
+[
+   {
+      "id":"5c41bde20d021b7c6d7876ed",
+      "username":"alamin-mahamud",
+      "email":"alamin.ineedahelp@gmail.com",
+      "password":"12345-Pa$$w0rd"
+   },
+   {
+      "id":"5c41d2110d021b3a955365bd",
+      "username":"jon-anton",
+      "email":"jon.anton@gmail.com",
+      "password":"Pa$$w0rd-D77m!"
+   }
+]
+```
+
+* Create a User
+```
+POST - http://localhost:8080/v1/authentication
+------------------------------------------------
+{
+	"username": "alamin-mahamud",
+  	"password": "simple-password",
+  	"email": "alamin.ineedahelp@gmail.com"
+}
+
+```
+
+``` go
+# Status Code 201
+
+```
+
+* Get a user
+```
+GET - http://localhost:8080/v1/authentication/5c41bde20d021b7c6d7876ed
+
+```
+```
+# Status Code - 200 OK
+{"id":"5c41bde20d021b7c6d7876ed","username":"alamin-mahamud","email":"alamin.ineedahelp@gmail.com","password":"simple-password"}
+```
+
+
+```
+PATCH - http://localhost:8080/v1/authentication/5c41bde20d021b7c6d7876ed
+------------------------------------------------
+{
+  "username": "alamin-mahamud",
+  "password": "12345-Pa$$w0rd",
+  "email": "alamin.ineedahelp@gmail.com"
+}
+
+``` 
+
+```
+# Status Code - 200
+{"result":"success"}
+```
+
+
+```
+DELETE - http://localhost:8080/v1/authentication/5c41bde20d021b7c6d7876ed
+```
+
+```
+# Status Code - 200
+{"result":"success"}
+```
+
+
 ## Test
 [WIP]
 
