@@ -18,16 +18,16 @@ func NewUser(c *mgo.Collection) IUser {
 
 // List - lists all users
 func (u *User) List() (*model.Users, error) {
-	var users *model.Users
+	users := model.Users{}
 	// err := u.C.Find(bson.M{}).All(users)
 
 	iter := u.C.Find(nil).Iter()
 	result := model.User{}
 	for iter.Next(&result) {
-		*users = append(*users, result)
+		users = append(users, result)
 	}
 
-	return users, nil
+	return &users, nil
 }
 
 // Create -
@@ -41,6 +41,7 @@ func (u *User) Create(m *model.User) error {
 
 // Get -
 func (u *User) Get(id string) (user *model.User, err error) {
+	user = &model.User{}
 	err = u.C.FindId(bson.ObjectIdHex(id)).One(user)
 	return
 }
