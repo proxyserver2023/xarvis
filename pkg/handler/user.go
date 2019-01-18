@@ -1,20 +1,25 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
+
+	"github.com/alamin-mahamud/xarvis/pkg/usecase"
 )
 
-type user struct{}
+type user struct {
+	u usecase.IUser
+}
 
 // NewUser - returns IHandler implementation of user
-func NewUser() IHandler {
-	return &user{}
+func NewUser(uu usecase.IUser) IHandler {
+	return &user{
+		u: uu,
+	}
 }
 
 // List - /v1/authentication/users
 func (u *user) List(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello in Web")
+
 }
 
 // Create - /v1/authentication/users
