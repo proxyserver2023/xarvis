@@ -29,13 +29,7 @@ func (u *User) List() (*model.Users, error) {
 // Create -
 func (u *User) Create(m *model.User) error {
 	err := u.r.Create(m)
-
-	if err != nil {
-		log.Fatal(err)
-		return err
-	}
-
-	return nil
+	return err
 
 }
 
