@@ -2,8 +2,8 @@ package repository
 
 import "github.com/alamin-mahamud/xarvis/pkg/model"
 
-// Base
-type IRepository interface {
+// IUser - represents the base Repository
+type IUser interface {
 	List() []*model.User
 	Create() *model.User
 	Get() *model.User
