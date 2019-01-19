@@ -19,7 +19,9 @@ cd $GOPATH/src/github.com/alamin-mahamud/xarvis
 ```
 
 ``` go
-docker-compose up
+// docker-compose up
+dep ensure
+make build
 ```
 
 ## Endpoints
