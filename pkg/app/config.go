@@ -2,6 +2,7 @@ package app
 
 import (
 	"fmt"
+
 	"github.com/go-ozzo/ozzo-validation"
 	"github.com/spf13/viper"
 )
@@ -39,7 +40,7 @@ func loadConfig(configPaths ...string) error {
 	v.SetConfigType("yaml")
 	v.SetEnvPrefix("xarvis")
 	v.AutomaticEnv()
-	v.SetDefault("error_file", "settings/errors.yaml")
+	v.SetDefault("error_file", "config/errors.yaml")
 	v.SetDefault("server_port", 8080)
 	v.SetDefault("jwt_signing_method", "HS256")
 
