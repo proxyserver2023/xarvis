@@ -24,11 +24,16 @@ func newRouter() *mux.Router {
 // install routes with appropriate handlers and database connection
 func initAuthRouter(r *mux.Router) {
 	authRouter := r.PathPrefix("/authentication").Subrouter()
-	registerAuthRoutes(authRouter)
+
+	//authJWTRouter := authRouter.PathPrefix("/jwt").Subrouter()
+	//registerAuthJWTRoutes(authJWTRouter)
+
+	authUserRouter := authRouter.PathPrefix("/users").Subrouter()
+	registerAuthUserRoutes(authUserRouter)
 }
 
-func registerAuthRoutes(r *mux.Router) {
-	routes := getAuthRoutes()
+func registerAuthUserRoutes(r *mux.Router) {
+	routes := getAuthUserRoutes()
 	for _, route := range routes {
 		r.Methods(route.Method).
 			Path(route.Pattern).
@@ -36,3 +41,14 @@ func registerAuthRoutes(r *mux.Router) {
 			Handler(route.HandlerFunc)
 	}
 }
+
+/* func registerAuthJWTRoutes(r *mux.Router) {
+	routes := getAuthJWTRoutes()
+	for _, route := range routes {
+		r.Methods(route.Method).
+			Path(route.Pattern).
+			Name(route.Name).
+			Handler(route.HandlerFunc)
+	}
+}
+*/

@@ -7,7 +7,7 @@ import (
 	"github.com/alamin-mahamud/xarvis/pkg/usecase"
 )
 
-func getAuthRoutes() Routes {
+func getAuthUserRoutes() Routes {
 	mgoUserCollection := database.NewDB()
 	userRepo := repository.NewUser(mgoUserCollection)
 	userUsecase := usecase.NewUser(userRepo)
@@ -23,3 +23,14 @@ func getAuthRoutes() Routes {
 		Route{"Delete", "DELETE", "/{id}", userHandler.Delete},
 	}
 }
+
+/* func getAuthJWTRoutes() Routes {
+	mgoUserCollection := database.NewDB()
+	jwtRepo := repository.NewAuthJWT(mgoUserCollection)
+	jwtUsecase := usecase.NewAuthJWT(jwtRepo)
+	jwtHandler := handler.NewAuthJWT(jwtUsecase)
+
+	return Routes{}
+
+}
+*/
